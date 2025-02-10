@@ -21,7 +21,7 @@ interface BaseItem {
     fontWeight?: string | number;
     borderRadius?: string;
     margin?: string;
-    textTransform?: 'uppercase' | 'lowercase' | 'capitalize' | 'none';
+    // textTransform?: 'uppercase' | 'lowercase' | 'capitalize' | 'none';
  
   }
   
@@ -52,6 +52,7 @@ interface BaseItem {
     outerStyle?: OuterStyle;
     socialIcons?: SocialIcon[];
     options?: SocialIcon[];
+    [key: string]: any;
   }
   
 
@@ -64,6 +65,10 @@ interface BaseItem {
 
   export type EmailTemplate = (Layout | Element)[];
   
+  export type SelectedElement = {
+    item : Layout;
+    index: number;
+  }
 
   export interface EmailTemplateContextType {
     emailTemplate: EmailTemplate;
@@ -80,7 +85,10 @@ interface BaseItem {
     setScreenSize: React.Dispatch<React.SetStateAction<'desktop' | 'mobile'>>;
   }
   
-
+  export interface SelectedElementContextType {
+    selectedElement:SelectedElement | undefined;
+    setSelectedElement: React.Dispatch<React.SetStateAction<SelectedElement | undefined>>;
+  }
   export interface ColumnLayoutProps {
     item: Layout;
   }

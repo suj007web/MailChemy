@@ -34,15 +34,15 @@ export const list:Element[] =[
         icon: TextSelectionIcon,
         type: 'Text',
         label: 'Text',
-        textarea: 'Sample Text',
+        content: 'Sample Text',
         style: {
-            backgroundColor: '#fff',
+            backgroundColor: '',
             color: '#000000',
             padding: '10px',
             textAlign: 'center',
             fontSize: '22px',
             fontWeight: 'normal',
-            textTransform: 'uppercase'//lowercase , capitilized
+
         },
         outerStyle: {
             backgroundColor: '#fff',
@@ -82,8 +82,9 @@ export const list:Element[] =[
         style: {
             backgroundColor: '#ffffff',
             padding: '10px',
-            height: '30%',
-            width: '30%',
+            height: '20%',
+            width: '20%',
+            borderRadius: '100%'
         },
         outerStyle: {
             display: 'flex',
