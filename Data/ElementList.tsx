@@ -34,15 +34,15 @@ export const list:Element[] =[
         icon: TextSelectionIcon,
         type: 'Text',
         label: 'Text',
-        content: 'Sample Text',
+        textarea: 'Sample Text',
         style: {
-            backgroundColor: '',
+            backgroundColor: '#ffffff',
             color: '#000000',
             padding: '10px',
             textAlign: 'center',
             fontSize: '22px',
             fontWeight: 'normal',
-
+            textTransform : 'none'
         },
         outerStyle: {
             backgroundColor: '#fff',

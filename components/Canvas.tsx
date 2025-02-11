@@ -42,7 +42,7 @@ const Canvas = () => {
     }
 
   return (
-    <div className='mt-16 flex justify-center'>
+    <div className='mt-16 flex justify-center sticky top-0'>
         <div className={` p-6 w-full ${screenSize == 'desktop' ? "max-w-2xl" : "max-w-sm"} 
         ${dragOver  ? "bg-purple-200 p-4" : "bg-white"}
         `}

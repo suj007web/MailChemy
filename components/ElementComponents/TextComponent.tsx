@@ -1,10 +1,10 @@
 import { Element } from '@/types/types';
 import React from 'react'
-type TextComponentProps = Pick<Element, 'style' | 'content' >;
-const TextComponent = ({style, content} : TextComponentProps) => {
+type TextComponentProps = Pick<Element, 'style' | 'textarea' >;
+const TextComponent = ({style, textarea} : TextComponentProps) => {
   return (
-    <div >
-        <h2 style={style}>{content}</h2>
+    <div className='w-full'>
+        <h2 style={style}>{textarea}</h2>
     </div>
   )
 }

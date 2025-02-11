@@ -78,7 +78,7 @@ const ColumnLayout = ({item} : {item : Layout}) => {
                 {Array.from({length: item?.numOfCol}).map((_, index) => (
                     <div 
                         key={index} 
-                        className={`p-2 flex items-center
+                        className={`p-0 my-1 flex items-center
                             ${!item?.[index]?.type ? "bg-gray-100 border-dashed border" : ""}
                             justify-center cursor-pointer
                             ${(selectedElement?.item?.id == item?.id && selectedElement?.index == index )&& "border-blue-500 border-2 border-dashed"}
