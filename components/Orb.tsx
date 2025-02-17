@@ -2,7 +2,7 @@
 import { useEffect, useRef } from "react";
 import { Renderer, Program, Mesh, Triangle, Vec3 } from "ogl";
 import Link from "next/link";
-import { SignUp } from "@clerk/nextjs";
+import { SignUp, useUser } from "@clerk/nextjs";
 
 interface OrbProps {
   hue?: number;
@@ -18,7 +18,7 @@ export default function Orb({
   forceHoverState = false,
 }: OrbProps) {
   const ctnDom = useRef<HTMLDivElement>(null);
-
+  const {user} = useUser();
   const vert = /* glsl */ `
     precision highp float;
     attribute vec2 position;
@@ -297,11 +297,18 @@ export default function Orb({
   }, [hue, hoverIntensity, rotateOnHover, forceHoverState, frag, vert]);
 
   return <div ref={ctnDom} className="w-full h-full " >
-     
+     {
+      user ? <Link href={"/dashboard"}>
+      <button
+        className="absolute top-1/2 left-1/2 -translate-x-1/2  -translate-y-1/ text-primary-200 font-extrabold text-3xl px-4 py-2 rounded-md shadow-md transition-all"
+        >Go To My Dashboard</button>
+      </Link> : 
+
        <Link href={"/sign-up"}>
        <button
         className="absolute top-1/2 left-1/2 -translate-x-1/2  -translate-y-1/ text-primary-200 font-extrabold text-3xl px-4 py-2 rounded-md shadow-md transition-all"
       >Try for Free</button>
        </Link>
+     }
   </div>;
 }

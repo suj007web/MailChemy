@@ -5,6 +5,7 @@ import { Button } from './ui/button'
 import { Code, Monitor, Smartphone } from 'lucide-react'
 import { useEmailTemplate, useScreenSize } from '@/app/editor/[templateId]/page';
 import { useParams } from 'next/navigation';
+import { toast } from 'sonner';
 
 const EditorHeader = ({viewHTMLCode} : {viewHTMLCode : any}) => {
     const {screenSize, setScreenSize} = useScreenSize();
@@ -18,7 +19,12 @@ const EditorHeader = ({viewHTMLCode} : {viewHTMLCode : any}) => {
             emailTemplate,
             id : templateId
         })
+
       })
+
+      if(res.ok){
+        toast.success('Template saved successfully');
+      }
       }catch(e){
         console.log(e);
       }

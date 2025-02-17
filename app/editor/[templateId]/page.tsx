@@ -4,6 +4,7 @@ import Canvas from '@/components/Canvas';
 import EditorHeader from '@/components/EditorHeader';
 import EditorSidebar from '@/components/EditorSidebar';
 import Settings from '@/components/Settings';
+import { Toaster } from '@/components/ui/sonner';
 import { DragDropLayoutContext } from '@/Context/DragDropElementContext';
 import {  EmailTemplateContext } from '@/Context/EmailTemplateContext';
 import { ScreenSizeContext } from '@/Context/ScreenSizeContext';
@@ -100,6 +101,7 @@ const Editor = () => {
           </div>
           }
         </div>
+        <Toaster/>
        </SelectedElementContext.Provider>
         </EmailTemplateContext.Provider>
       </DragDropLayoutContext.Provider>
