@@ -32,7 +32,7 @@ const Header = () => {
         <h1 className="text-primary-100 text-2xl font-extrabold">MailChemy</h1>
       </div>
 
-      <Link href={"/create"}>
+  
         {
             isSignedIn ?  
             <div>
@@ -53,7 +53,7 @@ const Header = () => {
             Getting Started
           </motion.button>
         }
-      </Link>
+
     </motion.nav>
   );
 };

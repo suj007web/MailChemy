@@ -1,7 +1,7 @@
 "use client"
 import { useDragDropLayout, useEmailTemplate, useSelectedElement } from '@/app/editor/[templateId]/page';
 
-import React, { ReactNode, useState } from 'react'
+import React, { ReactNode, useEffect, useState } from 'react'
 import { Element, Layout, DragDropState, EmailTemplate } from '@/types/types'
 import ButtonComponent from '../ElementComponents/ButtonComponent';
 import TextComponent from '../ElementComponents/TextComponent';
@@ -10,11 +10,12 @@ import LogoComponent from '../ElementComponents/LogoComponent';
 import LogoHeader from '../ElementComponents/LogoHeader';
 import DividerComponent from '../ElementComponents/DividerComponent';
 import SocialIconsComponent from '../ElementComponents/SocialIconsComponent';
+import { ArrowDown, ArrowUp, Trash} from 'lucide-react';
 
 const ColumnLayout = ({item} : {item : Layout}) => {
     const [dragDrop, setDragDrop] = useState<DragDropState>();
     const {dragDropLayout} = useDragDropLayout();
-    const {setEmailTemplate} = useEmailTemplate();
+    const {emailTemplate, setEmailTemplate} = useEmailTemplate();
     const {selectedElement, setSelectedElement} = useSelectedElement();
     
     const onDragOverHandle = (event: React.DragEvent<HTMLDivElement>, index: number) => {
@@ -26,6 +27,7 @@ const ColumnLayout = ({item} : {item : Layout}) => {
     };
 
     const getElementComponent = (element : Element | undefined):ReactNode =>{
+
         if(element?.type == 'Button'){
             return <ButtonComponent {...element}/>
         }
@@ -67,18 +69,48 @@ const ColumnLayout = ({item} : {item : Layout}) => {
         setDragDrop(undefined);
     };
 
+    const moveItemUp = (id: string) => {
+        const index = emailTemplate.findIndex((col:any )=> col.id === id);
+        if(index > 0 ){
+          setEmailTemplate((prevItems:any)=>{
+            const items = [...prevItems];
+            
+            [items[index], items[index - 1]] = [items[index - 1], items[index]];
+
+            return items;
+          })
+        }
+    }
+
+    const moveItemDown = (id: string) => {
+        const index = emailTemplate.findIndex((col:any )=> col.id === id);
+        if(index < emailTemplate.length - 1 ){
+          setEmailTemplate((prevItems:any)=>{
+            const items = [...prevItems];
+            
+            [items[index], items[index + 1]] = [items[index + 1], items[index]];
+
+            return items;
+          })
+        }
+    }
+
+
+
     return (
-        <div>
+        <div className='relative'>
             <div
             style={{
                 display: 'grid',
                 gridTemplateColumns: `repeat(${item?.numOfCol}, 1fr)`,
             }}
+            className={`${selectedElement?.item?.id == item?.id  && "border-2  border-blue-500"}`}
             >
-                {Array.from({length: item?.numOfCol}).map((_, index) => (
-                    <div 
+                {Array.from({length: item?.numOfCol}).map((_, index) => {
+                  // console.log(item)
+                    return <div 
                         key={index} 
-                        className={`p-0 my-1 flex items-center
+                        className={`${getElementComponent(item?.[index]) ? 'p-0' : 'p-2' }  my-1 flex items-center
                             ${!item?.[index]?.type ? "bg-gray-100 border-dashed border" : ""}
                             justify-center cursor-pointer
                             ${(selectedElement?.item?.id == item?.id && selectedElement?.index == index )&& "border-blue-500 border-2 border-dashed"}
@@ -88,12 +120,40 @@ const ColumnLayout = ({item} : {item : Layout}) => {
                         `}
                         onDragOver={(event) => onDragOverHandle(event, index)}
                         onDrop={onDropHandle}
-                        onClick={() => setSelectedElement({item : item, index : index})}
+                        onClick={() => {
+                          console.log(item)
+                          return setSelectedElement({item : item, index : index})
+                        }}
                     >
                         {getElementComponent(item?.[index]) ?? "Drag Element Here"}
                     </div>
-                ))}
+                })}
             </div>
+
+           {
+            selectedElement?.item?.id == item?.id &&
+               <div className='absolute -right-10 top-0'>
+                <div className='  text-red-500 cursor-pointer p-2 bg-gray-100 rounded-full' onClick={()=>setEmailTemplate((prev)=>prev.filter((col)=>col.id !== item.id))}>
+               <Trash />
+             </div>
+             <div className=' cursor-pointer p-2 bg-gray-100 rounded-full' 
+             onClick={()=>{
+                moveItemUp(item.id as string);  
+            }}
+             >
+              <ArrowUp/>
+             </div>
+
+              <div className=' cursor-pointer p-2 bg-gray-100 rounded-full'
+              onClick={()=>{
+                moveItemDown(item.id as string);
+            }}
+              >
+                <ArrowDown/>
+              </div>
+
+               </div>
+           }
         </div>
     )
 }

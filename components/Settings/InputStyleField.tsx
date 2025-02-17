@@ -7,7 +7,9 @@ interface FieldProps {
   }
 const InputStyleField = ({label, value, onHandleStyleChange} : FieldProps) => {
     const formattedValue=(value : any)=>{
-        return value.replace('px', '');
+        if(typeof value === 'string'){
+          return value.replace('px', '');
+        }
     }
   return (
     <div>

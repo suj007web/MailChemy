@@ -4,38 +4,30 @@ import Orb from '@/components/Orb';
 import { BackgroundLines } from '@/components/ui/background-lines';
 import { TypewriterEffectSmooth } from '@/components/ui/typewriter-effect';
 
-import { useUser } from '@clerk/nextjs';
+
 import { motion } from 'framer-motion';
-import {  useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+
+
 
 export default function Home() {
-  const {isSignedIn} = useUser();
-  const router = useRouter();
-  useEffect(() => {
-    if (isSignedIn) {
-      router.push("/create"); 
-    }
-  }, [isSignedIn, router]);
+
+
   const words = [
     {
       text: 'Create',
       'className': 'text-white'
     },
-    {
-      text: 'Your',
-      className: 'text-white'
-    },
+
     {
       text: 'AI Powered',
       className : 'bg-gradient-to-r from-primary-100 to-violet-600 bg-clip-text text-transparent'
     },
     {
-      text: 'Email',
+      text: 'Email Templates',
       className: 'text-white'
     },
     {
-      text: 'Templates',
+      text: 'and Html Pages',
       className: 'text-white'
     }
   ]

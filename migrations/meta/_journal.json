@@ -8,6 +8,20 @@
       "when": 1739012402533,
       "tag": "0000_new_medusa",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1739289796685,
+      "tag": "0001_thick_molly_hayes",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1739291231172,
+      "tag": "0002_even_puck",
+      "breakpoints": true
     }
   ]
 }

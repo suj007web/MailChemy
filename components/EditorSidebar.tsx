@@ -9,7 +9,7 @@ import { Layout, Element } from '@/types/types';
 const EditorSidebar = () => {
     const { setDragDropLayout} = useDragDropLayout();
     const onDragStart = (item : Layout)=> {
-        console.log(item);
+
         setDragDropLayout({
             ...item,
             id : Date.now()
@@ -17,7 +17,7 @@ const EditorSidebar = () => {
     }
 
     const onDragElementStart = (item : Element)=>{
-        console.log(item);
+ 
         setDragDropLayout({
             ...item,
             id : Date.now()

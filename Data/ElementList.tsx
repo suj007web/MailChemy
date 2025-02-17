@@ -159,8 +159,8 @@ export const list:Element[] =[
             }
         ],
         style: {
-            width: 40,
-            height: 40
+            width: '40px',
+            height: '40px',
         },
         outerStyle: {
             display: 'flex',

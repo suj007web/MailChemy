@@ -10,12 +10,14 @@ interface SliderFieldProps {
 
 const SliderField = ({label, value, onHandleStyleChange, type} : SliderFieldProps) => {
     const formattedValue=(value : any)=>{
-        return Number(value.replace(type, ''));
+      if(typeof value === 'string'){
+        return value.replace('px', '');
+      }
     }
   return (
     <div className='bg-slate-800 p-3 rounded-md'>
         <label>{label}</label>
-        <Slider defaultValue={[formattedValue(value)]}
+        <Slider defaultValue={[formattedValue(value)] as any}
         className='text-black bg-white rounded-none rounded-l-md'  min={0}
         max={100} step={1}
         onValueChange={(v)=>onHandleStyleChange(v.toString() + type)} />

@@ -3,9 +3,10 @@ import { useUser} from '@clerk/nextjs';
 
 import React, { useEffect, useState } from 'react'
 import {motion} from 'framer-motion';
-import Header from '@/components/Header';
+
 import { Plus } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const Page = () => {
     const {user} = useUser();
@@ -14,7 +15,7 @@ const Page = () => {
     
   return (
     <div className='bg-[#05091a] h-screen '>
-        <Header/>
+      
         <motion.div className='mx-5 md:mx-28 my-10'
          initial={{ y: 50, opacity: 0 }}
          animate={{ y: 0, opacity: 1 }}
@@ -22,7 +23,9 @@ const Page = () => {
         >
           <div className='flex-col flex gap-3 md:flex-row md:gap-0 justify-between items-center '>
             <h1 className='text-white text-4xl font-bold'>Hello <span className='text-primary-100'>{user?.fullName}</span> !</h1>
+            <Link href='/dashboard/create'>
             <button className='bg-primary-200 hover:bg-primary-300 transition-all duration-300 text-white px-4 py-2 flex gap-2'><Plus/>Create new Email Template</button>
+            </Link>
           </div>
 
           <div className='my-10'>
